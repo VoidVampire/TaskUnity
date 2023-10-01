@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskUnity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#221c35]">
+    <header class="my-20">
+        <h1 class="text-center text-white text-7xl font-extrabold">Welcome to TaskUnity!</h1>            
+    </header>
+    <main class="flex flex-row justify-center my-10">
+            <div class="w-[600px] px-20 pt-10 mr-20 rounded-2xl shadow-[#fc956d] shadow-2xl">
+                <h1 class="font-extrabold text-[#fc6872] text-4xl">Sign Up</h1>
+                <form action="/register" method="post" class="grid grid-cols-1 gap-5 my-10">
+                    <label for="email" class="text-xl font-extrabold text-white">Email</label>
+                    <input class="w-[400px] bg-gray-100 text-gray-900 p-3 rounded-lg" type="email" name="email" id="email" placeholder="Email*" />
+                    <label for="password" class="text-xl font-extrabold text-white">Password</label>
+                    <input class="w-[400px] bg-gray-100 text-gray-900 p-3 rounded-lg" name="password" type="password" id="password" placeholder="Password*" />
+                    <button type="submit" value=sign-up class="w-[100px] mb-10 mt-7 bg-[#fc6872] text-white font-bold py-2 px-4 rounded ">Sign Up</button>
+                </form>
+            </div>
+            <div class="w-[600px] px-20 pt-10 mr-20 rounded-2xl shadow-[#fc956d] shadow-2xl">
+                <h1 class="font-extrabold text-[#fc6872] text-4xl">Sign In</h1>
+                <form action="/admin" method="post" class="grid grid-cols-1 gap-5 my-10">
+                    <label for="email" class="text-xl font-extrabold text-white">Email</label>
+                    <input class="w-[400px] bg-gray-100 text-gray-900 p-3 rounded-lg" type="email" name="email" id="email" placeholder="Email*" />
+                    <label for="password" class="text-xl font-extrabold text-white">Password</label>
+                    <input class="w-[400px] bg-gray-100 text-gray-900 p-3 rounded-lg" name="password" type="password" id="password" placeholder="Password*" />
+                    <button type="submit" value=sign-in class="w-[100px] mb-10 mt-7 bg-[#fc6872] text-white font-bold py-2 px-4 rounded ">Sign In</button>
+                </form>
+            </div>
+    </main>
+</body>
+</html>

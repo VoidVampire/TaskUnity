@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= local.title %>
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pri: '#221c35',
+                        sec: '#fc6872',
+                        ter: '#fc956d',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header class="h-[100px] flex flex-row text-white bg-pri">
+        <svg class="ml-[800px] mt-4 mr-[20px]" width="60px" height="60px" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg" stroke="">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <path
+                    d="M17 3.33782C15.5291 2.48697 13.8214 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22C17.5228 22 22 17.5228 22 12C22 10.1786 21.513 8.47087 20.6622 7"
+                    stroke="#fc6872" stroke-width="2.4" stroke-linecap="round"></path>
+            </g>
+        </svg>
+        <h1 class=" mr-[300px] mt-2 text-center text-white text-7xl font-extrabold">Tasks</h1>
+        <a class="mr-[-50px] mt-3" href="/logout"> <img src="https://i.imgur.com/fr94Z8s.png" alt="Image">
+        </a>
+    </header>
+    <main class="h-screen bg-[#f3f3f3]">
+        <div class="h-7"></div>
+        <div class="rounded bg-sec ml-[600px] mt-[100px] w-fit ">
+        <form class="p-6" action="/edit-task/<%= data._id %>?_method=PUT" method="post">
+            <label class="font-bold" for="assigner">From:</label>
+            <input type="text" id="assigner" name="assigner" value="<%= x.loggedInUserEmail %>" readonly><br><br>
+
+            <label class="font-bold" for="title">Task Title:</label>
+            <input type="text" id="title" name="title" value="<%= data.title %>" required><br><br>
+    
+            <label class="font-bold" for="body">Task Body:</label>
+            <textarea id="body" name="body" rows="4" cols="50"><%= data.body %></textarea><br><br>
+    
+            <input class="font-bold rounded bg-ter text-pri text-xl p-3" type="submit" value="Submit">
+        </form>
+    </div>
+    </main>
+    <footer class="bg-pri h-[100px]"></footer>
+
+
+
+</body>
+
+</html>

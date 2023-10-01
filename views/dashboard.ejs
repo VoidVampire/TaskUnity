@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= local.title %>
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pri: '#221c35',
+                        sec: '#fc6872',
+                        ter: '#fc956d',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header class="h-[100px] flex flex-row text-white bg-pri">
+        <h1 class="ml-[500px] mt-6 rounded-lg bg-sec text-pri text-xl font-extrabold p-2 w-fit h-fit"><%= loggedInUserEmail %></h1>
+        <svg class="ml-[150px] mt-4 mr-[20px]" width="60px" height="60px" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg" stroke="">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <path
+                    d="M17 3.33782C15.5291 2.48697 13.8214 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22C17.5228 22 22 17.5228 22 12C22 10.1786 21.513 8.47087 20.6622 7"
+                    stroke="#fc6872" stroke-width="2.4" stroke-linecap="round"></path>
+            </g>
+        </svg>
+        <a href="/dashboard" class=" mr-[100px] mt-2 text-center text-white text-7xl font-extrabold">Tasks</a>
+        <a class="mt-4" href="/add-task"> <img src="https://i.imgur.com/8qsEE0V.png" alt="Image">
+            <a class="mr-[-50px] mt-3" href="/logout"> <img src="https://i.imgur.com/fr94Z8s.png" alt="Image">
+            </a>
+    </header>
+    <main class="h-screen bg-[#f3f3f3]">
+        <ul>
+            <li>
+                <% status0Tasksassignee.forEach(task=> { %>
+                    <div class="h-7"></div>
+                    <div class="mx-[300px] rounded-lg bg-ter">
+                        <div class="flex flex-row">
+                            <p class="mx-3 px-3 py-3 font-extrabold rounded-md bg-white w-fit text-sm text-pri"> Task #
+                                <%= task._id %>
+                            </p>
+
+                            <a href="/mark-done?_id=<%= task._id %>"
+                                class="ml-[800px] font-extrabold rounded-md bg-pri wi-fit px-2 py-2 text-white"> Mark as
+                                Done</a>
+
+                        </div>
+                        <div class="p-3 h-fit">
+                            <h1
+                                class="mb-2 px-2 py-2 text-2xl font-extrabold rounded-md bg-pri w-fit leading-tight text-white">
+                                <%= task.title %>
+                            </h1>
+                            <p class="mb-2 px-1 ext-pri font-bold text-xl">
+                                <%= task.body %>
+                            </p>
+                        </div>
+                        <div class="border-t-2 border-neutral-100 px-4 py-3 text-pri text-md font-medium">
+                            <%= task.createdAt.toLocaleDateString('en-US', { weekday: 'short' , month: 'short' ,
+                                day: 'numeric' , year: 'numeric' }) %>
+                                <p class="pl-10 font-extrabold text-lg">Assigner: <%= task.assigner %>
+                                        &nbsp;&nbsp;&nbsp;&nbsp; Assignee: <%= task.assignee %>
+                                </p>
+                        </div>
+                    </div>
+                    <% }) %>
+            </li>
+            <li>
+
+                <% status0Tasksassigner.forEach(task=> { %>
+                    <div class="h-7"></div>
+                    <div class="mx-[300px] rounded-lg bg-ter">
+                        <div class="flex flex-row">
+                            <p class="mx-3 px-3 py-3 font-extrabold rounded-md bg-white w-fit text-sm text-pri">
+                                Task # <%= task._id %>
+                            </p>
+                            <a href="/edit-task?_id=<%= task._id %>"
+                                class="ml-[700px] font-extrabold rounded-md bg-pri wi-fit px-2 py-2 text-white">
+                                Edit</a>
+                            <a href="/delete-task/<%= task._id %>?_method=DELETE" method="post"
+                                class="ml-[100px] font-extrabold rounded-md bg-pri wi-fit px-2 py-2 text-white">
+                                Delete</a>
+
+                        </div>
+                        <div class="p-3 h-fit">
+                            <h1
+                                class="mb-2 px-2 py-2 text-2xl font-extrabold rounded-md bg-pri w-fit leading-tight text-white">
+                                <%= task.title %>
+                            </h1>
+                            <p class="mb-2 px-1 ext-pri font-bold text-xl">
+                                <%= task.body %>
+                            </p>
+                        </div>
+                        <div class="border-t-2 border-neutral-100 px-4 py-3 text-pri text-md font-medium">
+                            <%= task.createdAt.toLocaleDateString('en-US', { weekday: 'short' , month: 'short' ,
+                                day: 'numeric' , year: 'numeric' }) %>
+                                <p class="pl-10 font-extrabold text-lg">Assigner: <%= task.assigner %>
+                                        &nbsp;&nbsp;&nbsp;&nbsp; Assignee: <%= task.assignee %>
+                                </p>
+                        </div>
+                    </div>
+                    <% }) %>
+            </li>
+            <li>
+                <% status1Tasksassignee.forEach(task=> { %>
+                    <div class="h-7"></div>
+                    <div class="mx-[300px] rounded-lg bg-ter">
+                        <div class="flex flex-row">
+                            <p class="mx-3 px-3 py-3 font-extrabold rounded-md bg-white w-fit text-sm text-pri"> Task #
+                                <%= task._id %>
+                            </p>
+                            <p class="px-2 py-2 ml-[800px] font-bold rounded-md bg-green-500 text-white text-xl w-fit">
+                                Done</p>
+
+
+
+                        </div>
+                        <div class="p-3 h-fit">
+                            <h1
+                                class="mb-2 px-2 py-2 text-2xl font-extrabold rounded-md bg-pri w-fit leading-tight text-white">
+                                <%= task.title %>
+                            </h1>
+                            <p class="mb-2 px-1 ext-pri font-bold text-xl">
+                                <%= task.body %>
+                            </p>
+                        </div>
+                        <div class="border-t-2 border-neutral-100 px-4 py-3 text-pri text-md font-medium">
+                            <%= task.createdAt.toLocaleDateString('en-US', { weekday: 'short' , month: 'short' ,
+                                day: 'numeric' , year: 'numeric' }) %>
+                                <p class="pl-10 font-extrabold text-lg">Assigner: <%= task.assigner %>
+                                        &nbsp;&nbsp;&nbsp;&nbsp; Assignee: <%= task.assignee %>
+                                </p>
+                        </div>
+                    </div>
+                    <% }) %>
+            </li>
+            <li>
+                <% status1Tasksassigner.forEach(task=> { %>
+                    <div class="h-7"></div>
+                    <div class="mx-[300px] rounded-lg bg-ter">
+                        <div class="flex flex-row">
+                            <p class="mx-3 px-3 py-3 font-extrabold rounded-md bg-white w-fit text-sm text-pri"> Task #
+                                <%= task._id %>
+                            </p>
+                            <p class="px-2 py-2 ml-[800px] font-bold rounded-md bg-green-500 text-white text-xl w-fit">
+                                Done</p>
+
+
+
+                        </div>
+                        <div class="p-3 h-fit">
+                            <h1
+                                class="mb-2 px-2 py-2 text-2xl font-extrabold rounded-md bg-pri w-fit leading-tight text-white">
+                                <%= task.title %>
+                            </h1>
+                            <p class="mb-2 px-1 ext-pri font-bold text-xl">
+                                <%= task.body %>
+                            </p>
+                        </div>
+                        <div class="border-t-2 border-neutral-100 px-4 py-3 text-pri text-md font-medium">
+                            <%= task.createdAt.toLocaleDateString('en-US', { weekday: 'short' , month: 'short' ,
+                                day: 'numeric' , year: 'numeric' }) %>
+                                <p class="pl-10 font-extrabold text-lg">Assigner: <%= task.assigner %>
+                                        &nbsp;&nbsp;&nbsp;&nbsp; Assignee: <%= task.assignee %>
+                                </p>
+                        </div>
+
+
+                    </div>
+                    <% }) %>
+            </li>
+
+        </ul>
+    </main>
+    <footer class="bg-pri h-[100px]"></footer>
+
+
+
+</body>
+
+</html>
