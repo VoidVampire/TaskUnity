@@ -1,6 +1,6 @@
 # TaskUnity - A Project Management App
 
-TaskUnity is a full-stack task management application built using Express.js, MongoDB, Tailwind CSS, and Bun. This project was developed as part of the Full Stack Developer Internship at [Bharat Intern](https://www.linkedin.com/company/bharat-intern/). 
+TaskUnity is a task management application built using Express.js, MongoDB, Tailwind CSS, and Bun. This project was developed as part of the Full Stack Developer Internship at [Bharat Intern](https://www.linkedin.com/company/bharat-intern/). 
 
 ## License
 
